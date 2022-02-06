@@ -12,8 +12,11 @@
         <activity android:name=".Profile" />
         <activity
             android:name=".Home"
-            android:launchMode="singleTop" />
-        <activity android:name=".LoginActivity" />
+            android:launchMode="singleTop"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".GetNumber"
             android:windowSoftInputMode="adjustPan" />

@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "60873398428",
-    "project_id": "cricket-prediction-and-tips",
-    "storage_bucket": "cricket-prediction-and-tips.appspot.com"
+    "project_number": "396043635542",
+    "project_id": "cricket-prediction-v3-5a12a",
+    "storage_bucket": "cricket-prediction-v3-5a12a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:60873398428:android:1418006123df580e9c7559",
+        "mobilesdk_app_id": "1:396043635542:android:26f8725a2a273d56c664f7",
         "android_client_info": {
           "package_name": "com.tridentdao.cricketprediction"
         }
       },
       "oauth_client": [
         {
-          "client_id": "60873398428-p5r2qkbea0p4r3s670jft56f18g8bv3t.apps.googleusercontent.com",
+          "client_id": "396043635542-o6ok8ahjncoi4diolq9m6230j6b01sj4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.tridentdao.cricketprediction",
@@ -22,65 +22,20 @@
           }
         },
         {
-          "client_id": "60873398428-1mv15q6lfueu8uo1ot1uej0vrfn1r650.apps.googleusercontent.com",
+          "client_id": "396043635542-21c69ogrkseraiefge4akbr63srgg2nr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBgCesBKxbDt13ldyuhN0Fvuw5OB6mMmTw"
+          "current_key": "AIzaSyDCuFy5T-zIFIoQx8p3DSAdRbgrUE89o34"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "60873398428-1mv15q6lfueu8uo1ot1uej0vrfn1r650.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:60873398428:android:5784ace7f25752099c7559",
-        "android_client_info": {
-          "package_name": "com.tridentdaodev.cricketpredictionandtips"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "60873398428-116cp0qef7mtrkgmrqmbv25ffgedf77a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tridentdaodev.cricketpredictionandtips",
-            "certificate_hash": "35807bf449daf24efd745f9d8f8d498584f227a9"
-          }
-        },
-        {
-          "client_id": "60873398428-kb7vsf1i5t72lbatoj6grtddc6vebbup.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tridentdaodev.cricketpredictionandtips",
-            "certificate_hash": "c479223bc7830ffe36251c6e7e9eb03d81244436"
-          }
-        },
-        {
-          "client_id": "60873398428-1mv15q6lfueu8uo1ot1uej0vrfn1r650.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBgCesBKxbDt13ldyuhN0Fvuw5OB6mMmTw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "60873398428-1mv15q6lfueu8uo1ot1uej0vrfn1r650.apps.googleusercontent.com",
+              "client_id": "396043635542-21c69ogrkseraiefge4akbr63srgg2nr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

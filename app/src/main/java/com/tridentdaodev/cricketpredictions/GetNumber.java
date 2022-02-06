@@ -5,10 +5,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -33,9 +38,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -53,8 +60,7 @@ public class GetNumber extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_number);
-
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Button btn = findViewById(R.id.button3);
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
@@ -71,8 +77,47 @@ public class GetNumber extends AppCompatActivity {
             }
         });
 
+        TextView termsBtn = findViewById(R.id.termstxt);
+
+        termsBtn.setOnClickListener(view -> {
+            CustomTabsIntent.Builder customIntent = new CustomTabsIntent.Builder();
+
+            // below line is setting toolbar color
+            // for our custom chrome tab.
+            customIntent.setToolbarColor(ContextCompat.getColor(GetNumber.this, R.color.purple_200));
+
+            // we are calling below method after
+            // setting our toolbar color.
+
+            String url = "https://tridentdao.github.io/CricketPredictionPrivacyPolicy/";
+            openCustomTab(GetNumber.this, customIntent.build(), Uri.parse(url));
+        });
 
     }
+
+
+    public static void openCustomTab(Activity activity, CustomTabsIntent customTabsIntent, Uri uri) {
+        // package name is the default package
+        // for our custom chrome tab
+        String packageName = "com.android.chrome";
+        if (packageName != null) {
+
+            // we are checking if the package name is not null
+            // if package name is not null then we are calling
+            // that custom chrome tab with intent by passing its
+            // package name.
+            customTabsIntent.intent.setPackage(packageName);
+
+            // in that custom tab intent we are passing
+            // our url which we have to browse.
+            customTabsIntent.launchUrl(activity, uri);
+        } else {
+            // if the custom tabs fails to load then we are simply
+            // redirecting our user to users device default browser.
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+        }
+    }
+
 
 
     private boolean isValidPhone(CharSequence phone){
@@ -114,11 +159,12 @@ public class GetNumber extends AppCompatActivity {
 
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
+            FieldValue fieldValue = FieldValue.serverTimestamp();
             Map<String, Object> user1 = new HashMap<>();
             user1.put("name", displayName);
             user1.put("email", email);
             user1.put("number", num);
-            user1.put("date", DateTime);
+            user1.put("date", fieldValue);
             db.collection("Users_v3")
                     .add(user1)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -141,6 +187,5 @@ public class GetNumber extends AppCompatActivity {
             finish();
         }
     }
-
 
 }

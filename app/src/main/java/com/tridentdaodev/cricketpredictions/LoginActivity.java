@@ -2,8 +2,13 @@ package com.tridentdaodev.cricketpredictions;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,13 +40,62 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        img.setImageURI(R.id.);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+//        img.setImageURI(R.id.);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user!=null){
+            Intent intent = new Intent(LoginActivity.this, Home.class);
+            startActivity(intent);
+            finish();
+        }
         SignInButton gBtn = findViewById(R.id.googleBtn);
-        setGooglePlusButtonText(gBtn,"Login With Google");
+        setGooglePlusButtonText(gBtn,"Sign in with Google");
         gBtn.setOnClickListener(view -> {
             handleLogin();
         });
+
+
+        TextView termsBtn = findViewById(R.id.terms);
+
+        termsBtn.setOnClickListener(view -> {
+            CustomTabsIntent.Builder customIntent = new CustomTabsIntent.Builder();
+
+            // below line is setting toolbar color
+            // for our custom chrome tab.
+            customIntent.setToolbarColor(ContextCompat.getColor(LoginActivity.this, R.color.purple_200));
+
+            // we are calling below method after
+            // setting our toolbar color.
+
+            String url = "https://tridentdao.github.io/CricketPredictionPrivacyPolicy/";
+            openCustomTab(LoginActivity.this, customIntent.build(), Uri.parse(url));
+        });
+
+
+    }
+
+
+    public static void openCustomTab(Activity activity, CustomTabsIntent customTabsIntent, Uri uri) {
+        // package name is the default package
+        // for our custom chrome tab
+        String packageName = "com.android.chrome";
+        if (packageName != null) {
+
+            // we are checking if the package name is not null
+            // if package name is not null then we are calling
+            // that custom chrome tab with intent by passing its
+            // package name.
+            customTabsIntent.intent.setPackage(packageName);
+
+            // in that custom tab intent we are passing
+            // our url which we have to browse.
+            customTabsIntent.launchUrl(activity, uri);
+        } else {
+            // if the custom tabs fails to load then we are simply
+            // redirecting our user to users device default browser.
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+        }
     }
 
 
@@ -82,9 +136,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "onActivityResult: " + user.getEmail());
 
                 if (user.getMetadata().getCreationTimestamp() == user.getMetadata().getLastSignInTimestamp()) {
-                    Toast.makeText(this, "Welcome new User", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this, "Welcome new User", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(this, "Welcome back again", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this, "Welcome back again", Toast.LENGTH_LONG).show();
                 }
 
                 Intent intent = new Intent(this, GetNumber.class);
